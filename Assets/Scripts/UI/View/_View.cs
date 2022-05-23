@@ -1,17 +1,22 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public abstract class View : MonoBehaviour
 {
+    [Header("View")]
     [SerializeField]
-    protected TextMeshProUGUI titleComponent;
+    protected TextMeshProUGUI _titleComponent;
 
     [SerializeField]
-    protected Button closeButton;
+    protected Button _functionButton;
 
-    private void Awake()
+    [Inject]
+    protected SoundController _soundController;
+
+    protected virtual void Awake()
     {
-        closeButton.onClick.AddListener(() => Destroy(this.gameObject, 0.11f));
+        _functionButton.onClick.AddListener(() => _soundController.Play("UI_Click"));
     }
 }

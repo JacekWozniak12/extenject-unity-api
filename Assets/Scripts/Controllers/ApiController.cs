@@ -5,9 +5,6 @@ using Zenject;
 
 public class ApiController : Controller
 {
-    [Inject]
-    ViewController _popupController;
-
     public override void Initialize()
     {
         // Get Random Image

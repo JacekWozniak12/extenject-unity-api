@@ -4,6 +4,19 @@ using UnityEngine;
 
 public sealed class ErrorView : View
 {
+    [Header("Error View")]
     [SerializeField]
     private TextMeshProUGUI _descriptionComponent;
+
+    public void Create(string title, string information)
+    {
+        _titleComponent.text = title;
+        _descriptionComponent.text = information;
+    }
+
+    protected override void Awake()
+    {
+        base.Awake();
+        _functionButton.onClick.AddListener(() => Destroy(this.gameObject, 0.11f));
+    }
 }
