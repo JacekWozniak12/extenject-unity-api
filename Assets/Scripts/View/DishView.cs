@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class DishView
+public class DishView : View
 {
     Image _image;
     TextMeshProUGUI _title;

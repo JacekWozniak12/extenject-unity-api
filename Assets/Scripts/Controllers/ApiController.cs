@@ -1,23 +1,32 @@
 using UnityEngine;
 using UnityEngine.Networking;
 using System.Threading.Tasks;
+using Zenject;
 
-public class ApiSystem : MonoBehaviour
+public class ApiController : Controller
 {
-    PopupSystem _popupSystem;
+    [Inject]
+    PopupController _popupController;
+
+    public override void Initialize()
+    {
+        // Get Random Image
+    }
+
+    
 
     // async Task<UnityWebRequest.Result> SendRequest(
     //     string address,
     //     UnityWebRequest request
     // )
     // {
-        
+
     // }
 
     bool HasConnectionOrProtocolError(UnityWebRequest.Result result)
         =>  result == UnityWebRequest.Result.ConnectionError || 
             result == UnityWebRequest.Result.ProtocolError;
-    
+
 }
 
 

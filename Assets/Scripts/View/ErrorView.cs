@@ -1,10 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Zenject;
 
-public class ErrorView : MonoBehaviour
+public class ErrorView : View
 {
-    PopupSystem _popupSystem;
+    [Inject]
+    PopupController _popupController;
+    
     TextMeshProUGUI textComponent;
     Button button;
 }

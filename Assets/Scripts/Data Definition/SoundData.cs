@@ -7,4 +7,5 @@ using UnityEngine;
 public class SoundData : ScriptableObject
 {
     public AudioClip[] Clips;
+    public string Name;
 }
