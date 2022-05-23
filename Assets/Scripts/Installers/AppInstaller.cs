@@ -7,7 +7,7 @@ public class AppInstaller : MonoInstaller
     {
         // *** Controller Binding ***
         // UX
-        Container.Bind<PopupController>().AsSingle().NonLazy();
+        Container.Bind<ViewController>().AsSingle().NonLazy();
         Container.Bind<SoundController>().AsSingle().NonLazy();
 
         // DATA

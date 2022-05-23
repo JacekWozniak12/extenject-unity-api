@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PopupController : Controller
+public class ViewController : Controller
 {
     public override void Initialize()
     {

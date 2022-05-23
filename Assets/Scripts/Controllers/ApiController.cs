@@ -6,7 +6,7 @@ using Zenject;
 public class ApiController : Controller
 {
     [Inject]
-    PopupController _popupController;
+    ViewController _popupController;
 
     public override void Initialize()
     {
