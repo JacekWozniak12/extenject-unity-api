@@ -1,12 +1,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DisplayViewContainer : ViewContainer
+public sealed class DisplayViewContainer : ViewContainer
 {
     [SerializeField]
-    protected int _maxViewCount = 50;
+    private int _maxViewCount = 9;
 
     [SerializeField]
-    protected List<View> _viewList = new List<View>();
+    private List<View> _viewList = new List<View>();
 
+    public void AddDishView(DishView view)
+    {
+        if(_viewList.Count == _maxViewCount)
+            _viewList.RemoveAt(0);
+
+        _viewList.Add(view);
+        view.transform.SetParent(_container, false);
+    }
 }

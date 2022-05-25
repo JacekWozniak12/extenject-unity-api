@@ -19,4 +19,12 @@ public abstract class View : MonoBehaviour
     {
         _functionButton.onClick.AddListener(() => _soundController.Play("UI_Click"));
     }
+
+    public void SetStretched()
+    {
+        RectTransform rt = GetComponent<RectTransform>();
+        rt.anchorMin = Vector2.zero;
+        rt.anchorMax = Vector2.one;
+        rt.pivot = 0.5f * Vector2.one;
+    }
 }

@@ -14,6 +14,6 @@ public sealed class RequestView : View
     protected override void Awake()
     {
         base.Awake();
-        _functionButton.onClick.AddListener(() => Debug.Log(""));
+        _functionButton.onClick.AddListener(async () => await _apiController.GetResponse(_input.text));
     }
 }
