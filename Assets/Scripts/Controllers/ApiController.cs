@@ -8,9 +8,14 @@ using System.Text;
 
 public class ApiController : MonoBehaviour
 {
-    private string _apiLink = "https://foodish-api.herokuapp.com/api/";
+    private string _api = "https://foodish-api.herokuapp.com/api/images/";
     public Image Display;
     public string FoodType;
+
+    string[] foodTypes = 
+    {
+        "biryani", "burger", "butter-chicken", "dessert", "dosa", "idly", "pasta", "pizza", "rice", "samosa"
+    }; 
 
     [ContextMenu("Show response")]
     public async void ShowDebugResponse()
@@ -21,15 +26,13 @@ public class ApiController : MonoBehaviour
 
     public async Task<Sprite> GetResponse(string foodType)
     {
-        string body = $"/api/images/{foodType}";
-        UnityWebRequest dishImageLinkRequest = UnityWebRequest.Get(_apiLink);
+        if(foodType.Length <= 0) foodType = foodTypes[Random.Range(0, foodTypes.Length)];
 
-        dishImageLinkRequest.downloadHandler = new DownloadHandlerBuffer();
-        dishImageLinkRequest.SetRequestHeader("accept", " text/plain");
-        dishImageLinkRequest.SetRequestHeader("content-type", "text/plain");
+        UnityWebRequest dishImageLinkRequest = UnityWebRequest.Get(_api+foodType);
 
         UnityWebRequest.Result linkResult = await dishImageLinkRequest.SendWebRequest();
 
+        Debug.Log(dishImageLinkRequest.uri);
         Debug.Log(linkResult);
         Debug.Log(dishImageLinkRequest.downloadHandler.text);
 
