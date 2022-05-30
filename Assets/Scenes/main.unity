@@ -1053,7 +1053,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.594
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -1118,7 +1118,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &656238321
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1134,10 +1134,10 @@ RectTransform:
   m_Father: {fileID: 173467114}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1003.53125, y: -208.82166}
+  m_SizeDelta: {x: 958.5212, y: 367.6433}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &656238322
 MonoBehaviour:
@@ -1279,7 +1279,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1153714377}
   m_HandleRect: {fileID: 1153714376}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -2050,6 +2050,37 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 173467114}
     m_Modifications:
+    - target: {fileID: 920655343828558866, guid: 5bf7650c2a4bf9b4aae0b8db6b4d12f5, type: 3}
+      propertyPath: m_fontSize
+      value: 48
+      objectReference: {fileID: 0}
+    - target: {fileID: 920655343828558866, guid: 5bf7650c2a4bf9b4aae0b8db6b4d12f5, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 48
+      objectReference: {fileID: 0}
+    - target: {fileID: 1822173861203030984, guid: 5bf7650c2a4bf9b4aae0b8db6b4d12f5, type: 3}
+      propertyPath: m_FlexibleHeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3883988653813677195, guid: 5bf7650c2a4bf9b4aae0b8db6b4d12f5, type: 3}
+      propertyPath: m_text
+      value: 'What dish you wish to be served?
+
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3883988653813677195, guid: 5bf7650c2a4bf9b4aae0b8db6b4d12f5, type: 3}
+      propertyPath: m_fontSize
+      value: 48
+      objectReference: {fileID: 0}
+    - target: {fileID: 3883988653813677195, guid: 5bf7650c2a4bf9b4aae0b8db6b4d12f5, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 48
+      objectReference: {fileID: 0}
+    - target: {fileID: 3883988653813677195, guid: 5bf7650c2a4bf9b4aae0b8db6b4d12f5, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
     - target: {fileID: 4542906975510319659, guid: 5bf7650c2a4bf9b4aae0b8db6b4d12f5, type: 3}
       propertyPath: m_Name
       value: Request View
@@ -2209,6 +2240,23 @@ PrefabInstance:
     - target: {fileID: 8260529325053020640, guid: 5bf7650c2a4bf9b4aae0b8db6b4d12f5, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8921785513318167134, guid: 5bf7650c2a4bf9b4aae0b8db6b4d12f5, type: 3}
+      propertyPath: m_text
+      value: "Dishes available: \nbiryani, burger, butter-chicken, dessert, dosa,
+        idly, pasta, pizza, rice, samosa."
+      objectReference: {fileID: 0}
+    - target: {fileID: 8921785513318167134, guid: 5bf7650c2a4bf9b4aae0b8db6b4d12f5, type: 3}
+      propertyPath: m_overflowMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8921785513318167134, guid: 5bf7650c2a4bf9b4aae0b8db6b4d12f5, type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8921785513318167134, guid: 5bf7650c2a4bf9b4aae0b8db6b4d12f5, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
