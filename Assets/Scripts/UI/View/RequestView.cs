@@ -12,6 +12,9 @@ public sealed class RequestView : View
     private ApiController _apiController;
 
     [Inject]
+    private FoodTypeController _foodTypeController;
+
+    [Inject]
     private ViewController _viewController;
 
     [Inject]
@@ -22,9 +25,10 @@ public sealed class RequestView : View
         base.Awake();
         _functionButton.onClick.AddListener(async () =>
         {
-            Sprite sprite = await _apiController.GetResponse(_input.text);
+            FoodType foodType = _foodTypeController.GetFoodType(_input.text);
+            Sprite sprite = await _apiController.GetResponse(foodType);
             DishView view = _factory.Create();
-            view.Create(_input.text, sprite);
+            view.Create(foodType, sprite);
             _viewController.DisplayDish(view);
         }
         );

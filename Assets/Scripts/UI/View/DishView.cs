@@ -8,9 +8,13 @@ public sealed class DishView : View
     [SerializeField]
     private Image _image;
 
+    public class Factory : PlaceholderFactory<DishView> { }
+
     public void Create(string title, Sprite foodImage)
     {
         _image.sprite = foodImage;
+        _image.preserveAspect = true;
+        SetImageOversize(foodImage);
         _titleComponent.text = title;
     }
 
@@ -20,5 +24,20 @@ public sealed class DishView : View
         _functionButton.onClick.AddListener(() => Destroy(this.gameObject, 0.11f));
     }
 
-    public class Factory : PlaceholderFactory<DishView> { }
+    private void SetImageOversize(Sprite foodImage)
+    {
+        if (foodImage.rect.x > _image.rectTransform.rect.x)
+        {
+            float c = foodImage.rect.x / _image.rectTransform.rect.x;
+            Debug.Log($"x:{c}");
+
+        }
+        else
+        if (foodImage.rect.y > _image.rectTransform.rect.y)
+        {
+            float c = foodImage.rect.y / _image.rectTransform.rect.y;
+            Debug.Log($"y:{c}");
+        }
+    }
+
 }

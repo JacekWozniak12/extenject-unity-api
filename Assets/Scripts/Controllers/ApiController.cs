@@ -5,18 +5,12 @@ using System.Threading.Tasks;
 
 public class ApiController : Controller
 {
-    private string _api = "https://foodish-api.herokuapp.com/api/images/";  
-     
-    string[] foodTypes = 
-    {
-        "biryani", "burger", "butter-chicken", "dessert", "dosa", "idly", "pasta", "pizza", "rice", "samosa"
-    }; 
+    string _api = "https://foodish-api.herokuapp.com/api/images/";
 
-    public async Task<Sprite> GetResponse(string foodType)
-    {
-        foodType = GetRandomFoodIfEmpty(foodType);
-        foodType = foodType.ToLower();
+    public override void Initialize() { }
 
+    public async Task<Sprite> GetResponse(FoodType foodType)
+    {
         UnityWebRequest dishImageLinkRequest = UnityWebRequest.Get(_api + foodType);
         UnityWebRequest.Result linkResult = await dishImageLinkRequest.SendWebRequest();
 
@@ -38,15 +32,10 @@ public class ApiController : Controller
             webTexture,
             new Rect(0.0f, 0.0f, webTexture.width, webTexture.height),
             new Vector2(0.5f, 0.5f),
-            100.0f);
+            100.0f
+            );
 
         return sprite;
-    }
-
-    private string GetRandomFoodIfEmpty(string foodType)
-    {
-        if (foodType.Length <= 0) foodType = foodTypes[Random.Range(0, foodTypes.Length)];
-        return foodType;
     }
 
     [System.Serializable]
@@ -55,14 +44,10 @@ public class ApiController : Controller
         public string image;
     }
 
-
     bool HasConnectionOrProtocolError(UnityWebRequest.Result result)
-        => result == UnityWebRequest.Result.ConnectionError || result == UnityWebRequest.Result.ProtocolError;
+        =>  result == UnityWebRequest.Result.ConnectionError || 
+            result == UnityWebRequest.Result.ProtocolError;
 
-    public override void Initialize()
-    {
-        throw new System.NotImplementedException();
-    }
 }
 
 

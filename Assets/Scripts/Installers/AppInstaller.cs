@@ -30,6 +30,7 @@ public class AppInstaller : MonoInstaller
 
         // DATA
         Container.Bind<ApiController>().AsSingle().NonLazy();
+        Container.Bind<FoodTypeController>().AsSingle().NonLazy();
 
         // *** Prefab Binding *** 
         Container.BindInstance<DishView>(_dishViewPrefab);
@@ -38,7 +39,6 @@ public class AppInstaller : MonoInstaller
 
         Container.BindInstance<InputViewContainer>(_inputViewContainer);
         Container.BindInstance<DisplayViewContainer>(_displayViewContainer);
-
 
         Container.BindFactory<DishView, DishView.Factory>().FromComponentInNewPrefab(_dishViewPrefab);
         Container.BindFactory<ErrorView, ErrorView.Factory>().FromComponentInNewPrefab(_errorViewPrefab);
