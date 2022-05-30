@@ -6,6 +6,9 @@ public class InputViewContainer : ViewContainer
     [SerializeField]
     RectTransform _errorViewContainer;
 
+    [SerializeField]
+    RectTransform _background;
+
     [Inject]
     RequestView _requestView;
 
@@ -13,5 +16,7 @@ public class InputViewContainer : ViewContainer
     {
         view.transform.SetParent(_errorViewContainer.parent, false);
         view.SetStretched();
+        view.SetContainer(_background.gameObject);
+        _background.gameObject.SetActive(true);
     }
 }

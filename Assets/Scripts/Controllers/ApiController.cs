@@ -1,11 +1,14 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using System.Threading.Tasks;
+using Zenject;
 
 public class ApiController : Controller
 {
     string _api = "https://foodish-api.herokuapp.com/api/images/";
+
+    [Inject]
+    ViewController _viewController;
 
     public override void Initialize() { }
 
@@ -15,7 +18,10 @@ public class ApiController : Controller
         UnityWebRequest.Result linkResult = await dishImageLinkRequest.SendWebRequest();
 
         if (HasConnectionOrProtocolError(linkResult))
+        {
+            _viewController.DisplayError("API ERROR", dishImageLinkRequest.error);
             return null;
+        }
 
         string imageLink = JsonUtility.FromJson<ImageLink>(dishImageLinkRequest.downloadHandler.text).image;
 
@@ -23,7 +29,10 @@ public class ApiController : Controller
         UnityWebRequest.Result imageResult = await dishImageRequest.SendWebRequest();
 
         if (HasConnectionOrProtocolError(imageResult))
+        {
+            _viewController.DisplayError("IMAGE SRC ERROR", dishImageRequest.error);
             return null;
+        }
 
         Texture2D webTexture = DownloadHandlerTexture.GetContent(dishImageRequest);
 
@@ -45,7 +54,7 @@ public class ApiController : Controller
     }
 
     bool HasConnectionOrProtocolError(UnityWebRequest.Result result)
-        =>  result == UnityWebRequest.Result.ConnectionError || 
+        => result == UnityWebRequest.Result.ConnectionError ||
             result == UnityWebRequest.Result.ProtocolError;
 
 }

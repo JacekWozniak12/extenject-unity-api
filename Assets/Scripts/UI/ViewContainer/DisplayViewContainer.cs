@@ -20,6 +20,16 @@ public sealed class DisplayViewContainer : ViewContainer
         }
 
         _viewList.Add(view);
-        view.transform.SetParent(_container, false);
+
+        foreach(var e in _viewList)
+            e.transform.SetParent(null, false);
+        
+        for(int i = _viewList.Count; i > 0; i--)
+            _viewList[i - 1].transform.SetParent(_container, false);
+    }
+
+    public void ClearDish(DishView view)
+    {
+        _viewList.Remove(view);
     }
 }

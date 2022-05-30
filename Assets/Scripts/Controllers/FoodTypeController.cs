@@ -3,7 +3,11 @@ using System.Linq;
 
 public partial class FoodTypeController
 {
-    readonly string[] _foodTypesNames = { "biryani", "burger", "butter-chicken", "dessert", "dosa", "idly", "pasta", "pizza", "rice", "samosa" };
+    public static readonly string[] FoodTypesNames = {
+        "biryani", "burger", "butter-chicken",
+        "dessert", "dosa", "idly", "pasta",
+        "pizza", "rice", "samosa"
+        };
 
     /// <summary>
     /// Returns food type that is available in API, otherwise returns random food type.
@@ -13,6 +17,7 @@ public partial class FoodTypeController
     {
         name = name.ToLower();
         name = name.Trim();
+
         return GetClosestFoodTypeAvailable(name);
     }
 
@@ -21,18 +26,18 @@ public partial class FoodTypeController
         if (name.Length == 0) return GetRandomFood();
 
         // Performs check for closest representation
-        string foodType = _foodTypesNames.FirstOrDefault<string>(x => x == name);
+        string foodType = FoodTypesNames.FirstOrDefault<string>(x => x == name);
 
         // Performs check for dish that contains parameter
         if (foodType == default)
-            foodType = _foodTypesNames.FirstOrDefault<string>(x => x.Contains(name));
+            foodType = FoodTypesNames.FirstOrDefault<string>(x => x.Contains(name));
 
         // Naive check solution
         string temp = name;
         while (foodType == default && temp.Length > 0)
         {
             temp = temp.Substring(0, temp.Length - 1);
-            foodType = _foodTypesNames.FirstOrDefault<string>(x => x.Contains(temp));
+            foodType = FoodTypesNames.FirstOrDefault<string>(x => x.Contains(temp));
         }
 
         // Takes random food
@@ -42,6 +47,6 @@ public partial class FoodTypeController
     }
 
     private FoodType GetRandomFood() =>
-        new FoodType(_foodTypesNames[Random.Range(0, _foodTypesNames.Length)]);
+        new FoodType(FoodTypesNames[Random.Range(0, FoodTypesNames.Length)]);
 
 }

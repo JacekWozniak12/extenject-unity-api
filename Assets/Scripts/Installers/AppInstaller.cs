@@ -30,6 +30,7 @@ public class AppInstaller : MonoInstaller
 
         // DATA
         Container.Bind<ApiController>().AsSingle().NonLazy();
+        Container.Bind<InputController>().AsSingle().NonLazy();
         Container.Bind<FoodTypeController>().AsSingle().NonLazy();
 
         // *** Prefab Binding *** 

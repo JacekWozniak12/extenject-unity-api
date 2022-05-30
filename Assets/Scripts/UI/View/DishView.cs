@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using UnityEngine.Events;
 
 public sealed class DishView : View
 {
@@ -10,12 +11,13 @@ public sealed class DishView : View
 
     public class Factory : PlaceholderFactory<DishView> { }
 
-    public void Create(string title, Sprite foodImage)
+    public void Create(string title, Sprite foodImage, UnityAction onClean)
     {
         _image.sprite = foodImage;
         _image.preserveAspect = true;
         SetImageOversize(foodImage);
         _titleComponent.text = title;
+        _functionButton.onClick.AddListener(onClean);
     }
 
     protected override void Awake()
@@ -30,7 +32,6 @@ public sealed class DishView : View
         {
             float c = foodImage.rect.x / _image.rectTransform.rect.x;
             Debug.Log($"x:{c}");
-
         }
         else
         if (foodImage.rect.y > _image.rectTransform.rect.y)

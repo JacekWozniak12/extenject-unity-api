@@ -9,16 +9,29 @@ public sealed class ErrorView : View
     [SerializeField]
     private TextMeshProUGUI _descriptionComponent;
 
+    GameObject _container;
+
     public void Create(string title, string information)
     {
         _titleComponent.text = title;
         _descriptionComponent.text = information;
+        _functionButton.onClick.AddListener(
+            () =>
+            {
+                Destroy(this.gameObject, 0.11f);
+                _container?.SetActive(false);
+            }
+            );
+    }
+
+    public void SetContainer(GameObject gameObject)
+    {
+        _container = gameObject;
     }
 
     protected override void Awake()
     {
         base.Awake();
-        _functionButton.onClick.AddListener(() => Destroy(this.gameObject, 0.11f));
     }
 
     public class Factory : PlaceholderFactory<ErrorView> { }
