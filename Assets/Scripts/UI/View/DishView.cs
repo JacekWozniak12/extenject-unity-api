@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public sealed class DishView : View
 {
@@ -18,4 +19,6 @@ public sealed class DishView : View
         base.Awake();
         _functionButton.onClick.AddListener(() => Destroy(this.gameObject, 0.11f));
     }
+
+    public class Factory : PlaceholderFactory<DishView> { }
 }

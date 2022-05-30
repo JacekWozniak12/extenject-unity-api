@@ -1,6 +1,7 @@
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine;
+using Zenject;
 
 public sealed class ErrorView : View
 {
@@ -19,4 +20,6 @@ public sealed class ErrorView : View
         base.Awake();
         _functionButton.onClick.AddListener(() => Destroy(this.gameObject, 0.11f));
     }
+
+    public class Factory : PlaceholderFactory<ErrorView> { }
 }

@@ -14,9 +14,16 @@ public class SoundController : Controller
 
     public void Play(string soundName)
     {
-        AudioClip[] sounds = _data.First(x => x.Name == soundName).Clips;
-        AudioClip sound = sounds[Random.Range(0, sounds.Length)];
-        
-        _source.PlayOneShot(sound);
+        try
+        {
+            AudioClip[] sounds = _data.First(x => x.Name == soundName).Clips;
+            AudioClip sound = sounds[Random.Range(0, sounds.Length)];
+
+            _source.PlayOneShot(sound);
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogWarning("Sound Controller reports:" + e.Message);
+        }
     }
 }

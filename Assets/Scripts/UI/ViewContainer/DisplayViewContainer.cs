@@ -11,7 +11,7 @@ public sealed class DisplayViewContainer : ViewContainer
 
     public void AddDishView(DishView view)
     {
-        if(_viewList.Count == _maxViewCount)
+        if (_viewList.Count == _maxViewCount && _viewList.Count > 0)
             _viewList.RemoveAt(0);
 
         _viewList.Add(view);

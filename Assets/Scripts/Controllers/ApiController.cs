@@ -15,6 +15,7 @@ public class ApiController : Controller
     public async Task<Sprite> GetResponse(string foodType)
     {
         foodType = GetRandomFoodIfEmpty(foodType);
+        foodType = foodType.ToLower();
 
         UnityWebRequest dishImageLinkRequest = UnityWebRequest.Get(_api + foodType);
         UnityWebRequest.Result linkResult = await dishImageLinkRequest.SendWebRequest();

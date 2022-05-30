@@ -1,13 +1,25 @@
+using System.ComponentModel;
 using UnityEngine;
 using Zenject;
 
 public class AppInstaller : MonoInstaller
 {
+    [Header("Prefabs")]
     [SerializeField]
     ErrorView _errorViewPrefab;
     
     [SerializeField]
     DishView _dishViewPrefab;
+
+    [Header("Scene")]
+    [SerializeField]
+    RequestView _requestViewScene;
+
+    [SerializeField]
+    InputViewContainer _inputViewContainer;
+
+    [SerializeField]
+    DisplayViewContainer _displayViewContainer;
     
     public override void InstallBindings()
     {
@@ -20,8 +32,15 @@ public class AppInstaller : MonoInstaller
         Container.Bind<ApiController>().AsSingle().NonLazy();
 
         // *** Prefab Binding *** 
-        Container.Bind<DishView>().FromComponentInNewPrefab(_dishViewPrefab);
-        Container.Bind<ErrorView>().FromComponentInNewPrefab(_errorViewPrefab);
+        Container.BindInstance<DishView>(_dishViewPrefab);
+        Container.BindInstance<ErrorView>(_errorViewPrefab);
+        Container.BindInstance<RequestView>(_requestViewScene);
+
+        Container.BindInstance<InputViewContainer>(_inputViewContainer);
+        Container.BindInstance<DisplayViewContainer>(_displayViewContainer);
+
+        Container.BindFactory<DishView, DishView.Factory>().FromComponentInNewPrefab(_dishViewPrefab);
+        Container.BindFactory<ErrorView, ErrorView.Factory>().FromComponentInNewPrefab(_errorViewPrefab);
     }
 }
 

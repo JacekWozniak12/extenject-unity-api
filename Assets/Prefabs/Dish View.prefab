@@ -179,8 +179,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ab282a5e9f7a39468ec17bbab86b331, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  titleComponent: {fileID: 685424875461959499}
-  closeButton: {fileID: 685424875182274195}
+  _titleComponent: {fileID: 685424875461959499}
+  _functionButton: {fileID: 685424875182274195}
   _image: {fileID: 685424873971751994}
 --- !u!114 &685424874898521921
 MonoBehaviour:
