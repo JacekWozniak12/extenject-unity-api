@@ -12,7 +12,12 @@ public sealed class DisplayViewContainer : ViewContainer
     public void AddDishView(DishView view)
     {
         if (_viewList.Count == _maxViewCount && _viewList.Count > 0)
+        {
+            View temp = _viewList[0];
             _viewList.RemoveAt(0);
+            
+            Destroy(temp.gameObject);
+        }
 
         _viewList.Add(view);
         view.transform.SetParent(_container, false);

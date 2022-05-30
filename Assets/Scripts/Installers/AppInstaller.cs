@@ -39,6 +39,7 @@ public class AppInstaller : MonoInstaller
         Container.BindInstance<InputViewContainer>(_inputViewContainer);
         Container.BindInstance<DisplayViewContainer>(_displayViewContainer);
 
+
         Container.BindFactory<DishView, DishView.Factory>().FromComponentInNewPrefab(_dishViewPrefab);
         Container.BindFactory<ErrorView, ErrorView.Factory>().FromComponentInNewPrefab(_errorViewPrefab);
     }
