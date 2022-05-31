@@ -1,8 +1,10 @@
 using UnityEngine;
 using System.Linq;
 
-public partial class FoodTypeController
+public class FoodTypeController : Controller
 {
+    public override void Initialize(){}
+
     public static readonly string[] FoodTypesNames = {
         "biryani", "burger", "butter-chicken",
         "dessert", "dosa", "idly", "pasta",
