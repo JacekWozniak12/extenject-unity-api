@@ -15,7 +15,6 @@ public class InputViewContainer : ViewContainer
     public void AddErrorView(ErrorView view)
     {
         view.transform.SetParent(_errorViewContainer.parent, false);
-        view.SetStretched();
         view.SetContainer(_background.gameObject);
         _background.gameObject.SetActive(true);
     }

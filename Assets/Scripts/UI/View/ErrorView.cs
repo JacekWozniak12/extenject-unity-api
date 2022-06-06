@@ -15,13 +15,12 @@ public sealed class ErrorView : View
     {
         _titleComponent.text = title;
         _descriptionComponent.text = information;
-        _functionButton.onClick.AddListener(
+        _functionButton.clicked +=
             () =>
             {
                 Destroy(this.gameObject, 0.11f);
                 _container?.SetActive(false);
-            }
-            );
+            };
     }
 
     public void SetContainer(GameObject gameObject)

@@ -1,6 +1,6 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.UIElements;
 using Zenject;
 
 public abstract class View : MonoBehaviour
@@ -17,14 +17,6 @@ public abstract class View : MonoBehaviour
 
     protected virtual void Awake()
     {
-        _functionButton.onClick.AddListener(() => _soundController.Play("UI_Click"));
-    }
-
-    public void SetStretched()
-    {
-        RectTransform rt = GetComponent<RectTransform>();
-        rt.anchorMin = Vector2.zero;
-        rt.anchorMax = Vector2.one;
-        rt.pivot = 0.5f * Vector2.one;
+        _functionButton.clicked += () => _soundController.Play("UI_Click");
     }
 }

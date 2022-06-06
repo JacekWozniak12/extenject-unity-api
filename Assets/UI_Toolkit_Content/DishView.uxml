@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="height: 374px; color: rgba(0, 0, 0, 255); background-color: rgba(255, 255, 255, 255);">
+        <ui:Label tabindex="-1" text="Dish" display-tooltip-when-elided="true" name="Dish" style="justify-content: center; align-items: center; -unity-text-align: upper-center;" />
+        <ui:VisualElement name="Image" style="-unity-background-scale-mode: scale-and-crop; background-image: url(&apos;project://database/Assets/TextMesh%20Pro/Sprites/EmojiOne.png?fileID=2800000&amp;guid=dffef66376be4fa480fb02b19edbe903&amp;type=3#EmojiOne&apos;); max-width: 400px; max-height: 400px; min-width: 300px; min-height: 300px; background-color: rgba(255, 255, 255, 255); -unity-slice-left: 0; -unity-slice-top: 0; -unity-slice-right: 0; -unity-slice-bottom: 0;" />
+        <ui:Button tabindex="-1" text="Close" display-tooltip-when-elided="true" name="Close" />
+    </ui:VisualElement>
+</ui:UXML>

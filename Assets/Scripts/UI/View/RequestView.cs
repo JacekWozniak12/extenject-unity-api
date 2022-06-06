@@ -22,7 +22,7 @@ public sealed class RequestView : View
         food = food.Substring(0, food.Length - 2);
         food += "."; 
 
-        _functionButton.onClick.AddListener(() => _inputController.SendRequest(_input.text));
+        _functionButton.clicked += () => _inputController.SendRequest(_input.text);
         _input.placeholder.GetComponent<TextMeshProUGUI>().text = food;
     }
 };
