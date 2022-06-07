@@ -3,7 +3,7 @@ using System.Linq;
 
 public class FoodTypeController : Controller
 {
-    public override void Initialize(){}
+    public override void Initialize() { }
 
     public static readonly string[] FoodTypesNames = {
         "biryani", "burger", "butter-chicken",
@@ -21,6 +21,20 @@ public class FoodTypeController : Controller
         name = name.Trim();
 
         return GetClosestFoodTypeAvailable(name);
+    }
+
+    public string GetAvailableDishes()
+    {
+        string food = "Dishes available:\n";
+
+        foreach (string f in FoodTypeController.FoodTypesNames)
+        {
+            food += $"{f}, ";
+        }
+        food = food.Substring(0, food.Length - 2);
+        food += ".";
+
+        return food;
     }
 
     private FoodType GetClosestFoodTypeAvailable(string name)

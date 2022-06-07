@@ -1,26 +1,23 @@
-using System.ComponentModel;
+using UnityEngine.UIElements;
 using UnityEngine;
 using Zenject;
 
 public class AppInstaller : MonoInstaller
 {
-    [Header("Prefabs")]
-    [SerializeField]
-    ErrorView _errorViewPrefab;
-    
-    [SerializeField]
-    DishView _dishViewPrefab;
-
     [Header("Scene")]
     [SerializeField]
-    RequestView _requestViewScene;
+    MainUI _mainUI;
+
+    [Header("UXML")]
+    [SerializeField]
+    VisualTreeAsset _errorViewUXML;
 
     [SerializeField]
-    InputViewContainer _inputViewContainer;
+    VisualTreeAsset _dishViewUXML;
 
     [SerializeField]
-    DisplayViewContainer _displayViewContainer;
-    
+    VisualTreeAsset _requestViewUXML;
+
     public override void InstallBindings()
     {
         // *** Controller Binding ***
@@ -34,15 +31,14 @@ public class AppInstaller : MonoInstaller
         Container.Bind<FoodTypeController>().AsSingle().NonLazy();
 
         // *** Prefab Binding *** 
-        Container.BindInstance<DishView>(_dishViewPrefab);
-        Container.BindInstance<ErrorView>(_errorViewPrefab);
-        Container.BindInstance<RequestView>(_requestViewScene);
+        Container.BindInstance<MainUI>(_mainUI);
 
-        Container.BindInstance<InputViewContainer>(_inputViewContainer);
-        Container.BindInstance<DisplayViewContainer>(_displayViewContainer);
+        // Container.BindInstance<ErrorView>(_errorViewUXML);
+        // Container.BindInstance<RequestView>(_requestViewUXML);
 
-        Container.BindFactory<DishView, DishView.Factory>().FromComponentInNewPrefab(_dishViewPrefab);
-        Container.BindFactory<ErrorView, ErrorView.Factory>().FromComponentInNewPrefab(_errorViewPrefab);
+
+        // Container.BindFactory<DishView, DishView.Factory>().FromComponentInNewPrefab(_dishViewPrefab);
+        // Container.BindFactory<ErrorView, ErrorView.Factory>().FromComponentInNewPrefab(_errorViewPrefab);
     }
 }
 
