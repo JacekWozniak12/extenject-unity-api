@@ -10,9 +10,9 @@ public sealed class RequestView : View
 
     [Inject] private InputController _inputController;
 
-    protected override void Awake()
+    protected void Awake()
     {
-        base.Awake();
+        // base.Awake();
         string food = "Dishes available:\n";
 
         foreach (string f in FoodTypeController.FoodTypesNames)

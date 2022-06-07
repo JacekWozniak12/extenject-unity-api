@@ -1,12 +1,10 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:Template name="RequestView" src="project://database/Assets/UI_Toolkit_Content/RequestView.uxml?fileID=9197481963319205126&amp;guid=e4f639d64e4d7f047ba1df14b52e2ec2&amp;type=3#RequestView" />
     <ui:VisualElement style="justify-content: center; left: 0; top: 0; right: 0; bottom: 0; align-items: stretch; margin-left: 5px; margin-right: 5px; margin-top: auto; margin-bottom: auto;">
         <ui:VisualElement name="ContentView">
             <ui:ListView focusable="true" name="content" show-alternating-row-backgrounds="ContentOnly" horizontal-scrolling="true" />
         </ui:VisualElement>
         <ui:VisualElement name="ErrorView" />
-        <ui:VisualElement name="RequestView" style="background-color: rgb(241, 241, 241); border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">
-            <ui:TextField picking-mode="Ignore" label="Request dish" value="dish" text="R" />
-            <ui:Button tabindex="-1" text="Button" display-tooltip-when-elided="true" enable-rich-text="true" style="border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; padding-left: 2px; padding-right: 2px; padding-top: 2px; padding-bottom: 2px; margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;" />
-        </ui:VisualElement>
+        <ui:Instance template="RequestView" name="RequestView" />
     </ui:VisualElement>
 </ui:UXML>

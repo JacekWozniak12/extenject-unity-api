@@ -1,25 +1,26 @@
-using UnityEngine.UI;
-using TMPro;
+using UnityEngine.UIElements;
 using UnityEngine;
 using Zenject;
 
 public sealed class ErrorView : View
 {
+    public class Factory : PlaceholderFactory<ErrorView> { }
+
     [Header("Error View")]
     [SerializeField]
-    private TextMeshProUGUI _descriptionComponent;
+    private Label _descriptionLabel;
+    private Label _titleLabel;
 
     GameObject _container;
 
     public void Create(string title, string information)
     {
-        _titleComponent.text = title;
-        _descriptionComponent.text = information;
+        _titleLabel.text = title;
+        _descriptionLabel.text = information;
         _functionButton.clicked +=
             () =>
             {
-                Destroy(this.gameObject, 0.11f);
-                _container?.SetActive(false);
+                
             };
     }
 
@@ -27,11 +28,4 @@ public sealed class ErrorView : View
     {
         _container = gameObject;
     }
-
-    protected override void Awake()
-    {
-        base.Awake();
-    }
-
-    public class Factory : PlaceholderFactory<ErrorView> { }
 }

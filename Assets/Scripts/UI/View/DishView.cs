@@ -7,20 +7,20 @@ public sealed class DishView : View
 {
     public class Factory : PlaceholderFactory<DishView> { }
 
-    [Header("Dish View")]
-    [SerializeField]
+    private Label _titleLabel;
     private Image _image;
 
     public void Create(string title, Sprite foodImage, UnityAction onClean)
     {
         _image.sprite = foodImage;
-        _titleComponent.text = title;
+        _titleLabel.text = title;
         _functionButton.clicked += () => onClean();
     }
 
-    protected override void Awake()
+    protected void Initialize()
     {
-        base.Awake();
-        _functionButton.clicked += () => Destroy(this.gameObject, 0.11f);
+        // base.Initialize();
+
+        // _functionButton.clicked += () => Destroy(this.gameObject, 0.11f);
     }
 }
