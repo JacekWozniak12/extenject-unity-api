@@ -8,7 +8,6 @@ public class AppInstaller : MonoInstaller
     [SerializeField]
     MainUI _mainUI;
 
-    [Header("UXML")]
     [SerializeField]
     VisualTreeAsset _errorViewUXML;
 
@@ -30,15 +29,14 @@ public class AppInstaller : MonoInstaller
         Container.Bind<InputController>().AsSingle().NonLazy();
         Container.Bind<FoodTypeController>().AsSingle().NonLazy();
 
-        // *** Prefab Binding *** 
+        // *** UXML Binding *** 
+        Container.Bind<DishView>().AsSingle().WithArguments<VisualTreeAsset>(_dishViewUXML);
+        Container.Bind<ErrorView>().AsSingle().WithArguments<VisualTreeAsset>(_errorViewUXML);
+        Container.Bind<RequestView>().AsSingle().WithArguments<VisualTreeAsset>(_requestViewUXML);
+
+        Container.BindIFactory<VisualTreeAsset, RequestView, RequestView.Factory>().AsSingle();
+
         Container.BindInstance<MainUI>(_mainUI);
-
-        // Container.BindInstance<ErrorView>(_errorViewUXML);
-        // Container.BindInstance<RequestView>(_requestViewUXML);
-
-
-        // Container.BindFactory<DishView, DishView.Factory>().FromComponentInNewPrefab(_dishViewPrefab);
-        // Container.BindFactory<ErrorView, ErrorView.Factory>().FromComponentInNewPrefab(_errorViewPrefab);
     }
 }
 
