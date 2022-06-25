@@ -4,18 +4,11 @@ using Zenject;
 
 public class AppInstaller : MonoInstaller
 {
-    [Header("Scene")]
     [SerializeField]
     MainUI _mainUI;
 
     [SerializeField]
-    VisualTreeAsset _errorViewUXML;
-
-    [SerializeField]
-    VisualTreeAsset _dishViewUXML;
-
-    [SerializeField]
-    VisualTreeAsset _requestViewUXML;
+    VisualTreeAsset _errorViewUXML, _dishViewUXML, _requestViewUXML;
 
     public override void InstallBindings()
     {
@@ -34,9 +27,11 @@ public class AppInstaller : MonoInstaller
         Container.Bind<ErrorView>().AsTransient().WithArguments<VisualTreeAsset>(_errorViewUXML);
         Container.Bind<RequestView>().AsTransient().WithArguments<VisualTreeAsset>(_requestViewUXML);
 
-        Container.BindFactory<DishView, DishView.Factory>();
-        Container.BindFactory<ErrorView, ErrorView.Factory>();
+        Container.BindFactory<Dish, DishView, DishView.Factory>();
+        Container.BindFactory<string, ErrorView, ErrorView.Factory>();
         Container.BindFactory<RequestView, RequestView.Factory>();
+
+        Container.Bind<MainUI>().FromComponentInNewPrefab(_mainUI).AsSingle();
     }
 }
 

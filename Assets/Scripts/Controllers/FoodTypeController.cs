@@ -23,20 +23,6 @@ public class FoodTypeController : Controller
         return GetClosestFoodTypeAvailable(name);
     }
 
-    public string GetAvailableDishes()
-    {
-        string food = "Dishes available:\n";
-
-        foreach (string f in FoodTypeController.FoodTypesNames)
-        {
-            food += $"{f}, ";
-        }
-        food = food.Substring(0, food.Length - 2);
-        food += ".";
-
-        return food;
-    }
-
     private FoodType GetClosestFoodTypeAvailable(string name)
     {
         if (name.Length == 0) return GetRandomFood();

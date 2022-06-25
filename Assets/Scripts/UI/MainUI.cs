@@ -12,7 +12,6 @@ public class MainUI : MonoBehaviour, IInitializable
     VisualElement _requestRoot;
     ListView _contentRoot;
 
-    [SerializeField]
     [Inject]
     RequestView _requestView;
 
@@ -27,4 +26,18 @@ public class MainUI : MonoBehaviour, IInitializable
         _contentRoot = root.Q<ListView>("Content");
         _requestRoot = root.Q<VisualElement>("Request");
     }
+
+    public void DisplayError(ErrorView view)
+    {
+        view.CreateView(_errorRoot);
+    }
+
+    public void AddDish(DishView view)
+    {
+        view.CreateView(_contentRoot);
+    }
+
+    private void DisplayRequest(RequestView view) => view.CreateView(_requestRoot);
+
+
 }

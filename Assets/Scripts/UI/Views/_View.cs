@@ -1,19 +1,16 @@
 using UnityEngine.UIElements;
-using Zenject;
 
-[System.Serializable]
 public abstract class View
 {
-    protected VisualTreeAsset _asset;
+    protected VisualElement _instance;
 
     protected View(VisualTreeAsset asset)
     {
-        _asset = asset;
+        _instance = asset.CloneTree();
     }
 
     public void CreateView(VisualElement at)
     {
-        var obj = _asset.Instantiate();
-        at.Add(obj);
+        at.Add(_instance);
     }
 }

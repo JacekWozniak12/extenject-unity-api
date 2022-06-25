@@ -14,7 +14,7 @@ public class InputController : Controller
     public async void SendRequest(string text)
     {
         FoodType foodType = _foodTypeController.GetFoodType(text);
-        Sprite sprite = await _apiController.GetResponse(foodType);
-        _viewController.DisplayDish(foodType, sprite);
+        Response response = await _apiController.GetResponse(foodType);
+        _viewController.DisplayDish(response.Dish);
     }
 }

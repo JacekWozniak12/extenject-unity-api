@@ -3,11 +3,12 @@ using Zenject;
 
 public class ErrorView : View
 {
-    public ErrorView(VisualTreeAsset asset) : base(asset)
+    string _errorMessage;
+
+    public ErrorView(VisualTreeAsset asset, string errorMessage) : base(asset)
     {
+        _errorMessage = errorMessage;
     }
 
-    public class Factory : PlaceholderFactory<ErrorView> { };
-
-
+    public class Factory : PlaceholderFactory<string, ErrorView> { };
 }

@@ -315,7 +315,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fda14f621f4413f4ebded67af265e61f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _test: 
 --- !u!1 &475141913
 GameObject:
   m_ObjectHideFlags: 0
@@ -542,6 +541,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mainUI: {fileID: 459520215}
-  _errorViewUXML: 
-  _dishViewUXML: 
-  test: taed2wq
+  _errorViewUXML: {fileID: 9197481963319205126, guid: daa64deee20af1048a3c8d100def7774, type: 3}
+  _dishViewUXML: {fileID: 9197481963319205126, guid: d23f4fc694bc8c64590d440c65a730ee, type: 3}
+  _requestViewUXML: {fileID: 9197481963319205126, guid: e4f639d64e4d7f047ba1df14b52e2ec2, type: 3}

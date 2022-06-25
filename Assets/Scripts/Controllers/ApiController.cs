@@ -7,20 +7,16 @@ public class ApiController : Controller
 {
     string _api = "https://foodish-api.herokuapp.com/api/images/";
 
-    [Inject]
-    ViewController _viewController;
-
     public override void Initialize() { }
 
-    public async Task<Sprite> GetResponse(FoodType foodType)
+    public async Task<Response> GetResponse(FoodType foodType)
     {
         UnityWebRequest dishImageLinkRequest = UnityWebRequest.Get(_api + foodType);
         UnityWebRequest.Result linkResult = await dishImageLinkRequest.SendWebRequest();
 
         if (HasConnectionOrProtocolError(linkResult))
         {
-            _viewController.DisplayError("API ERROR", dishImageLinkRequest.error);
-            return null;
+            return new Response(dishImageLinkRequest.error);
         }
 
         string imageLink = JsonUtility.FromJson<ImageLink>(dishImageLinkRequest.downloadHandler.text).Link;
@@ -30,8 +26,7 @@ public class ApiController : Controller
 
         if (HasConnectionOrProtocolError(imageResult))
         {
-            _viewController.DisplayError("IMAGE SRC ERROR", dishImageRequest.error);
-            return null;
+            return new Response(dishImageRequest.error);
         }
 
         Texture2D webTexture = DownloadHandlerTexture.GetContent(dishImageRequest);
@@ -44,18 +39,15 @@ public class ApiController : Controller
             100.0f
             );
 
-        return sprite;
+        return new Response(new Dish(foodType, sprite));
     }
 
     [System.Serializable]
-    public struct ImageLink
-    {
-        public string Link;
-    }
+    struct ImageLink { public string Link; }
 
     bool HasConnectionOrProtocolError(UnityWebRequest.Result result)
-        => result == UnityWebRequest.Result.ConnectionError ||
-            result == UnityWebRequest.Result.ProtocolError;
+        => result == UnityWebRequest.Result.ConnectionError
+        || result == UnityWebRequest.Result.ProtocolError;
 
 }
 
