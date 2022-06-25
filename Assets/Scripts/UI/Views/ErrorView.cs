@@ -5,7 +5,7 @@ public class ErrorView : View
 {
     string _errorMessage;
 
-    public ErrorView(VisualTreeAsset asset, string errorMessage) : base(asset)
+    public ErrorView(string errorMessage, VisualTreeAsset asset) : base(asset)
     {
         _errorMessage = errorMessage;
     }

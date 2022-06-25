@@ -1,6 +1,4 @@
 using UnityEngine;
-using UnityEngine.Networking;
-using System.Threading.Tasks;
 using Zenject;
 
 public class InputController : Controller
@@ -9,7 +7,10 @@ public class InputController : Controller
     [Inject] private FoodTypeController _foodTypeController;
     [Inject] private ViewController _viewController;
 
-    public override void Initialize() { }
+    public override void Initialize()
+    {
+        Debug.Log("Input Controller ready");
+    }
 
     public async void SendRequest(string text)
     {

@@ -3,7 +3,10 @@ using System.Linq;
 
 public class FoodTypeController : Controller
 {
-    public override void Initialize() { }
+    public override void Initialize()
+    {
+        Debug.Log("Food Type Controller Loaded");
+    }
 
     public static readonly string[] FoodTypesNames = {
         "biryani", "burger", "butter-chicken",

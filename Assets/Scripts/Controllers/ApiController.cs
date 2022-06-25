@@ -7,7 +7,10 @@ public class ApiController : Controller
 {
     string _api = "https://foodish-api.herokuapp.com/api/images/";
 
-    public override void Initialize() { }
+    public override void Initialize()
+    {
+        Debug.Log("Api Controller Loaded");
+    }
 
     public async Task<Response> GetResponse(FoodType foodType)
     {

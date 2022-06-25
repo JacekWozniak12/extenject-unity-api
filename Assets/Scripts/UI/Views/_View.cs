@@ -11,6 +11,6 @@ public abstract class View
 
     public void CreateView(VisualElement at)
     {
-        at.Add(_instance);
+        at.hierarchy.Add(_instance);
     }
 }

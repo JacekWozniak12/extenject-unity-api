@@ -5,39 +5,26 @@ using Zenject;
 /// <summary>
 /// Main UI handler, selects roots for view
 /// </summary>
-[RequireComponent(typeof(UIDocument))]
-public class MainUI : MonoBehaviour, IInitializable
+public class MainUI : MonoBehaviour
 {
     VisualElement _errorRoot;
     VisualElement _requestRoot;
     ListView _contentRoot;
 
     [Inject]
-    RequestView _requestView;
-
-    public void Initialize() { }
-
-    private void Start()
+    public void Init(PanelSettings settings, VisualTreeAsset asset)
     {
-        var document = GetComponent<UIDocument>();
+        UIDocument document = gameObject.AddComponent<UIDocument>();
+        document.panelSettings = settings;
+        document.visualTreeAsset = asset;
+        
         VisualElement root = document.rootVisualElement;
-
         _errorRoot = root.Q<VisualElement>("Error");
         _contentRoot = root.Q<ListView>("Content");
         _requestRoot = root.Q<VisualElement>("Request");
     }
 
-    public void DisplayError(ErrorView view)
-    {
-        view.CreateView(_errorRoot);
-    }
-
-    public void AddDish(DishView view)
-    {
-        view.CreateView(_contentRoot);
-    }
-
-    private void DisplayRequest(RequestView view) => view.CreateView(_requestRoot);
-
-
+    public void DisplayRequest(RequestView view) => view.CreateView(_requestRoot);
+    public void DisplayError(ErrorView view) => view.CreateView(_errorRoot);
+    public void AddDish(DishView view) => view.CreateView(_contentRoot);
 }

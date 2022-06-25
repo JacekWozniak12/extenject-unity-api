@@ -9,10 +9,9 @@ public class DishView : View
     VisualElement _dishImage;
     Button _closeButton;
 
-    public DishView(VisualTreeAsset asset, Dish dish) : base(asset)
+    public DishView(Dish dish, VisualTreeAsset asset) : base(asset)
     {
         _dish = dish;
-        
     }
 
     public class Factory : PlaceholderFactory<Dish, DishView> {};

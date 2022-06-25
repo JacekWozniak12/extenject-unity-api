@@ -5,33 +5,35 @@ using Zenject;
 public class AppInstaller : MonoInstaller
 {
     [SerializeField]
-    MainUI _mainUI;
+    VisualTreeAsset _mainUXML, _errorViewUXML, _dishViewUXML, _requestViewUXML;
 
     [SerializeField]
-    VisualTreeAsset _errorViewUXML, _dishViewUXML, _requestViewUXML;
+    PanelSettings _panelSettings;
 
     public override void InstallBindings()
     {
+        // MAIN UI
+        Container.Bind<MainUI>().
+            FromNewComponentOnNewGameObject().
+            WithGameObjectName("Main UI").
+            AsSingle().
+            WithArguments<VisualTreeAsset, PanelSettings>(_mainUXML, _panelSettings);
+
+        // UX ELEMENTS
+        Container.BindFactory<Dish, DishView, DishView.Factory>().WithArguments<VisualTreeAsset>(_dishViewUXML);
+        Container.BindFactory<string, ErrorView, ErrorView.Factory>().WithArguments<VisualTreeAsset>(_errorViewUXML);
+        Container.BindFactory<RequestView, RequestView.Factory>().WithArguments<VisualTreeAsset>(_requestViewUXML);
+
         // *** Controller Binding ***
         // UX
-        Container.Bind<ViewController>().AsSingle().NonLazy();
-        Container.Bind<SoundController>().AsSingle().NonLazy();
+        Container.BindInterfacesAndSelfTo<ViewController>().AsSingle().NonLazy();
+        Container.BindInterfacesAndSelfTo<SoundController>().AsSingle().NonLazy();
 
         // DATA
-        Container.Bind<ApiController>().AsSingle().NonLazy();
-        Container.Bind<InputController>().AsSingle().NonLazy();
-        Container.Bind<FoodTypeController>().AsSingle().NonLazy();
+        Container.BindInterfacesAndSelfTo<ApiController>().AsSingle().NonLazy();
+        Container.BindInterfacesAndSelfTo<InputController>().AsSingle().NonLazy();
+        Container.BindInterfacesAndSelfTo<FoodTypeController>().AsSingle().NonLazy();
 
-        // *** UXML Binding *** 
-        Container.Bind<DishView>().AsTransient().WithArguments<VisualTreeAsset>(_dishViewUXML);
-        Container.Bind<ErrorView>().AsTransient().WithArguments<VisualTreeAsset>(_errorViewUXML);
-        Container.Bind<RequestView>().AsTransient().WithArguments<VisualTreeAsset>(_requestViewUXML);
-
-        Container.BindFactory<Dish, DishView, DishView.Factory>();
-        Container.BindFactory<string, ErrorView, ErrorView.Factory>();
-        Container.BindFactory<RequestView, RequestView.Factory>();
-
-        Container.Bind<MainUI>().FromComponentInNewPrefab(_mainUI).AsSingle();
     }
 }
 
