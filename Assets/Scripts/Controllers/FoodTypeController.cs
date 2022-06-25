@@ -62,7 +62,5 @@ public class FoodTypeController : Controller
         return new FoodType(foodType);
     }
 
-    private FoodType GetRandomFood() =>
-        new FoodType(FoodTypesNames[Random.Range(0, FoodTypesNames.Length)]);
-
+    private FoodType GetRandomFood() => new FoodType(FoodTypesNames[Random.Range(0, FoodTypesNames.Length)]);
 }

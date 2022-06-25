@@ -15,10 +15,7 @@ public class MainUI : MonoBehaviour
 
     RequestView _requestView;
 
-    [Inject] 
-    RequestView.Factory _requestViewFactory;
-
-    private void Awake()
+    private void Start()
     {
         var document = GetComponent<UIDocument>();
         VisualElement root = document.rootVisualElement;
@@ -26,7 +23,5 @@ public class MainUI : MonoBehaviour
         _errorRoot = root.Q<VisualElement>("Error");
         _contentRoot = root.Q<ListView>("Content");
         _requestRoot = root.Q<VisualElement>("Request");
-
-        _requestView = _requestViewFactory.Create();
     }
 }

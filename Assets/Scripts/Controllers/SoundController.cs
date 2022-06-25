@@ -1,16 +1,12 @@
 using UnityEngine;
 using System.Linq;
-using Zenject;
 
 public class SoundController : Controller
 {
     AudioSource _source;
     SoundData[] _data;
 
-    public override void Initialize()
-    {
-        _source = new GameObject("Audio Source").AddComponent<AudioSource>();
-    }
+    public override void Initialize() => _source = new GameObject("Audio Source").AddComponent<AudioSource>();
 
     public void Play(string soundName)
     {

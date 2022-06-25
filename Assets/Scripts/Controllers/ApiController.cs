@@ -23,7 +23,7 @@ public class ApiController : Controller
             return null;
         }
 
-        string imageLink = JsonUtility.FromJson<ImageLink>(dishImageLinkRequest.downloadHandler.text).image;
+        string imageLink = JsonUtility.FromJson<ImageLink>(dishImageLinkRequest.downloadHandler.text).Link;
 
         UnityWebRequest dishImageRequest = UnityWebRequestTexture.GetTexture(imageLink);
         UnityWebRequest.Result imageResult = await dishImageRequest.SendWebRequest();
@@ -50,7 +50,7 @@ public class ApiController : Controller
     [System.Serializable]
     public struct ImageLink
     {
-        public string image;
+        public string Link;
     }
 
     bool HasConnectionOrProtocolError(UnityWebRequest.Result result)
