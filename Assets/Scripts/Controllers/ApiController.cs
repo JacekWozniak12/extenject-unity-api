@@ -19,17 +19,19 @@ public class ApiController : Controller
 
         if (HasConnectionOrProtocolError(linkResult))
         {
-            return new Response(dishImageLinkRequest.error);
+            return new Response("API error: " + dishImageLinkRequest.error);
         }
 
-        string imageLink = JsonUtility.FromJson<ImageLink>(dishImageLinkRequest.downloadHandler.text).Link;
+        Debug.Log((dishImageLinkRequest.downloadHandler.text));
+        string imageLink = JsonUtility.FromJson<ImageLink>((dishImageLinkRequest.downloadHandler.text)).image;
+        Debug.Log(imageLink);
 
         UnityWebRequest dishImageRequest = UnityWebRequestTexture.GetTexture(imageLink);
         UnityWebRequest.Result imageResult = await dishImageRequest.SendWebRequest();
 
         if (HasConnectionOrProtocolError(imageResult))
         {
-            return new Response(dishImageRequest.error);
+            return new Response("IMAGE error: " + dishImageRequest.error);
         }
 
         Texture2D webTexture = DownloadHandlerTexture.GetContent(dishImageRequest);
@@ -46,7 +48,10 @@ public class ApiController : Controller
     }
 
     [System.Serializable]
-    struct ImageLink { public string Link; }
+    public struct ImageLink
+    {
+        public string image;
+    }
 
     bool HasConnectionOrProtocolError(UnityWebRequest.Result result)
         => result == UnityWebRequest.Result.ConnectionError

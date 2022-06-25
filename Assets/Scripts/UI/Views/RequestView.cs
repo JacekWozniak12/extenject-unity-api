@@ -13,8 +13,6 @@ public class RequestView : View
         _textRequest = _instance.Q<TextField>("Request");
         _buttonRequest = _instance.Q<Button>("Confirm");
         _buttonRequest.clicked += () => inputController.SendRequest(_textRequest.text);
-        Debug.Log((_textRequest));
-        Debug.Log((_buttonRequest));
     }
 
     public class Factory : PlaceholderFactory<RequestView> { };

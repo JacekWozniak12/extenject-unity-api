@@ -16,6 +16,10 @@ public class InputController : Controller
     {
         FoodType foodType = _foodTypeController.GetFoodType(text);
         Response response = await _apiController.GetResponse(foodType);
-        _viewController.DisplayDish(response.Dish);
+        if (response.Error == null || response.Error.Length <= 0)
+        {
+            _viewController.DisplayDish(response.Dish);
+        }
+        else _viewController.DisplayError(response.Error);
     }
 }
