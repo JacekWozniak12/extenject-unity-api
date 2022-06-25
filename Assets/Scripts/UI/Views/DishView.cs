@@ -17,10 +17,18 @@ public class DishView : View
         _dishTitle = _instance.Q<Label>("Title");
         _closeButton = _instance.Q<Button>("Close");
 
-        _dishImage.style.backgroundImage = new StyleBackground(_dish.Image);
-        _dishImage.style.unityBackgroundScaleMode = ScaleMode.StretchToFill;
+        SetStyle();
 
         _dishTitle.text = dish.Type;
+    }
+
+    private void SetStyle()
+    {
+        _dishImage.style.backgroundImage = new StyleBackground(_dish.Image);
+        _dishImage.style.unityBackgroundScaleMode = ScaleMode.ScaleAndCrop;
+        _instance.style.marginRight = 5;
+        _instance.style.paddingBottom = 5;
+        _instance.style.paddingTop = 5;
     }
 
     public VisualElement GetElement() => _instance;

@@ -1,7 +1,7 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:VisualElement name="ITEM" style="height: auto; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255); min-width: auto; min-height: auto; max-width: initial; flex-grow: 1; flex-shrink: 0; max-height: initial; width: auto;">
         <ui:Label tabindex="-1" text="Dish" display-tooltip-when-elided="true" name="Title" style="justify-content: center; align-items: center; -unity-text-align: upper-center; flex-grow: 1;" />
-        <ui:VisualElement name="Image" style="-unity-background-scale-mode: scale-and-crop; background-image: none; max-width: none; max-height: none; min-width: auto; min-height: auto; background-color: rgb(255, 255, 255); -unity-slice-left: 0; -unity-slice-top: 0; -unity-slice-right: 0; -unity-slice-bottom: 0; flex-grow: 8; flex-shrink: 0;" />
+        <ui:VisualElement name="Image" style="-unity-background-scale-mode: scale-and-crop; background-image: none; max-width: none; max-height: none; min-width: 250px; min-height: auto; background-color: rgb(255, 255, 255); -unity-slice-left: 0; -unity-slice-top: 0; -unity-slice-right: 0; -unity-slice-bottom: 0; flex-grow: 8; flex-shrink: 0;" />
         <ui:Button tabindex="-1" text="Close" display-tooltip-when-elided="true" name="Close" />
     </ui:VisualElement>
 </ui:UXML>
