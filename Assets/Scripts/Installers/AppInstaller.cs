@@ -30,11 +30,14 @@ public class AppInstaller : MonoInstaller
         Container.Bind<FoodTypeController>().AsSingle().NonLazy();
 
         // *** UXML Binding *** 
-        Container.Bind<DishView>().AsSingle().WithArguments<VisualTreeAsset>(_dishViewUXML).NonLazy();
-        Container.Bind<ErrorView>().AsSingle().WithArguments<VisualTreeAsset>(_errorViewUXML).NonLazy();
-        Container.Bind<RequestView>().AsSingle().WithArguments<VisualTreeAsset>(_requestViewUXML).NonLazy();
+        Container.Bind<DishView>().AsTransient().WithArguments<VisualTreeAsset>(_dishViewUXML);
+        Container.Bind<ErrorView>().AsTransient().WithArguments<VisualTreeAsset>(_errorViewUXML);
+        Container.Bind<RequestView>().AsTransient().WithArguments<VisualTreeAsset>(_requestViewUXML);
 
-        Container.BindInstance<MainUI>(_mainUI);
+        Container.BindFactory<DishView, DishView.Factory>();
+        Container.BindFactory<ErrorView, ErrorView.Factory>();
+        Container.BindFactory<RequestView, RequestView.Factory>();
     }
 }
+
 

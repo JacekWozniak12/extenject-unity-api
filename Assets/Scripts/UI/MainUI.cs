@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine.UIElements;
 using UnityEngine;
 using Zenject;
@@ -7,13 +6,17 @@ using Zenject;
 /// Main UI handler, selects roots for view
 /// </summary>
 [RequireComponent(typeof(UIDocument))]
-public class MainUI : MonoBehaviour
+public class MainUI : MonoBehaviour, IInitializable
 {
     VisualElement _errorRoot;
     VisualElement _requestRoot;
     ListView _contentRoot;
 
+    [SerializeField]
+    [Inject]
     RequestView _requestView;
+
+    public void Initialize() { }
 
     private void Start()
     {
