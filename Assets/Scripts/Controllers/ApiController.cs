@@ -5,7 +5,7 @@ using Zenject;
 
 public class ApiController : Controller
 {
-    string _api = "https://foodish-api.herokuapp.com/api/images/";
+    string _api = "https://foodish-api.herokuadfpp.com/api/images/";
 
     public override void Initialize()
     {

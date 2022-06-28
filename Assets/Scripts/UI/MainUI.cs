@@ -31,7 +31,11 @@ public class MainUI : MonoBehaviour
     }
 
     public void DisplayRequest(RequestView view) => view.CreateView(_requestRoot);
-    public void DisplayError(ErrorView view) => view.CreateView(_errorRoot);
+    public void DisplayError(ErrorView view)
+    {
+        _errorRoot.hierarchy.Clear();
+        view.CreateView(_errorRoot);
+    }
 
     public void AddDish(DishView dish)
     {
