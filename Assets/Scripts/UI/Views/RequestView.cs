@@ -13,6 +13,9 @@ public class RequestView : View
         _textRequest = _instance.Q<TextField>("Request");
         _buttonRequest = _instance.Q<Button>("Confirm");
         _buttonRequest.clicked += () => inputController.SendRequest(_textRequest.text);
+
+        // TODO: MOVE TO STYLES
+        _textRequest.Q<TextElement>().style.unityTextAlign = TextAnchor.MiddleCenter;
     }
 
     public class Factory : PlaceholderFactory<RequestView> { };

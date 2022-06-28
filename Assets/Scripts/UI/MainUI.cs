@@ -35,7 +35,7 @@ public class MainUI : MonoBehaviour
 
     public void AddDish(DishView dish)
     {
-        _dishes.Add(dish);
+        _dishes.Insert(0, dish);
         dish.AddCloseAction(() => RemoveDish(dish));
         CleanScrollView();
         PopulateScrollView();

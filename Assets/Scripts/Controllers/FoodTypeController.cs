@@ -28,7 +28,7 @@ public class FoodTypeController : Controller
 
     private FoodType GetClosestFoodTypeAvailable(string name)
     {
-        if (name.Length == 0) return GetRandomFood();
+        if (name.Length == 0 || name == "dish") return GetRandomFood();
 
         // Performs check for closest representation
         string foodType = FoodTypesNames.FirstOrDefault<string>(x => x == name);
