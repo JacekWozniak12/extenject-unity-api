@@ -4,26 +4,27 @@ using Zenject;
 public class ViewController : Controller
 {
     // Factories
-    [Inject] ErrorView.Factory _errorViewFactory;
-    [Inject] DishView.Factory _dishViewFactory;
+    [Inject] private readonly ErrorView.Factory _errorViewFactory;
+    [Inject] private readonly DishView.Factory _dishViewFactory;
+    [Inject] private readonly RequestView.Factory _requestViewFactory;
 
-    // Containers
-    [Inject] DisplayViewContainer _displayViewContainer;
-    [Inject] InputViewContainer _inputViewContainer;
+    [Inject] private MainUI _mainUI;
 
-    public override void Initialize() { }
-
-    public void DisplayDish(FoodType foodType, Sprite sprite)
+    public override void Initialize()
     {
-        DishView view = _dishViewFactory.Create();
-        view.Create(foodType, sprite, () => _displayViewContainer.ClearDish(view));
-        _displayViewContainer.AddDishView(view);
+        RequestView view = _requestViewFactory.Create();
+        _mainUI.DisplayRequest(view);
     }
 
-    public void DisplayError(string title, string content)
+    public void DisplayDish(Dish dish)
     {
-        ErrorView view = _errorViewFactory.Create();
-        view.Create(title, content);
-        _inputViewContainer.AddErrorView(view);
+        DishView view = _dishViewFactory.Create(dish);
+        _mainUI.AddDish(view);
+    }
+
+    public void DisplayError(string errorMessage)
+    {
+        ErrorView view = _errorViewFactory.Create(errorMessage);
+        _mainUI.DisplayError(view);
     }
 }

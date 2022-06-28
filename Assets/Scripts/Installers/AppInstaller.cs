@@ -1,48 +1,40 @@
-using System.ComponentModel;
+using UnityEngine.UIElements;
 using UnityEngine;
 using Zenject;
 
 public class AppInstaller : MonoInstaller
 {
-    [Header("Prefabs")]
     [SerializeField]
-    ErrorView _errorViewPrefab;
-    
-    [SerializeField]
-    DishView _dishViewPrefab;
-
-    [Header("Scene")]
-    [SerializeField]
-    RequestView _requestViewScene;
+    VisualTreeAsset _mainUXML, _errorViewUXML, _dishViewUXML, _requestViewUXML;
 
     [SerializeField]
-    InputViewContainer _inputViewContainer;
+    PanelSettings _panelSettings;
 
-    [SerializeField]
-    DisplayViewContainer _displayViewContainer;
-    
     public override void InstallBindings()
     {
+        // MAIN UI
+        Container.Bind<MainUI>().
+            FromNewComponentOnNewGameObject().
+            WithGameObjectName("Main UI").
+            AsSingle().
+            WithArguments<VisualTreeAsset, PanelSettings>(_mainUXML, _panelSettings);
+
+        // UX ELEMENTS
+        Container.BindFactory<Dish, DishView, DishView.Factory>().WithArguments<VisualTreeAsset>(_dishViewUXML);
+        Container.BindFactory<string, ErrorView, ErrorView.Factory>().WithArguments<VisualTreeAsset>(_errorViewUXML);
+        Container.BindFactory<RequestView, RequestView.Factory>().WithArguments<VisualTreeAsset>(_requestViewUXML);
+
         // *** Controller Binding ***
         // UX
-        Container.Bind<ViewController>().AsSingle().NonLazy();
-        Container.Bind<SoundController>().AsSingle().NonLazy();
+        Container.BindInterfacesAndSelfTo<ViewController>().AsSingle().NonLazy();
+        Container.BindInterfacesAndSelfTo<SoundController>().AsSingle().NonLazy();
 
         // DATA
-        Container.Bind<ApiController>().AsSingle().NonLazy();
-        Container.Bind<InputController>().AsSingle().NonLazy();
-        Container.Bind<FoodTypeController>().AsSingle().NonLazy();
+        Container.BindInterfacesAndSelfTo<ApiController>().AsSingle().NonLazy();
+        Container.BindInterfacesAndSelfTo<InputController>().AsSingle().NonLazy();
+        Container.BindInterfacesAndSelfTo<FoodTypeController>().AsSingle().NonLazy();
 
-        // *** Prefab Binding *** 
-        Container.BindInstance<DishView>(_dishViewPrefab);
-        Container.BindInstance<ErrorView>(_errorViewPrefab);
-        Container.BindInstance<RequestView>(_requestViewScene);
-
-        Container.BindInstance<InputViewContainer>(_inputViewContainer);
-        Container.BindInstance<DisplayViewContainer>(_displayViewContainer);
-
-        Container.BindFactory<DishView, DishView.Factory>().FromComponentInNewPrefab(_dishViewPrefab);
-        Container.BindFactory<ErrorView, ErrorView.Factory>().FromComponentInNewPrefab(_errorViewPrefab);
     }
 }
+
 

@@ -3,7 +3,10 @@ using System.Linq;
 
 public class FoodTypeController : Controller
 {
-    public override void Initialize(){}
+    public override void Initialize()
+    {
+        Debug.Log("Food Type Controller Loaded");
+    }
 
     public static readonly string[] FoodTypesNames = {
         "biryani", "burger", "butter-chicken",
@@ -25,7 +28,7 @@ public class FoodTypeController : Controller
 
     private FoodType GetClosestFoodTypeAvailable(string name)
     {
-        if (name.Length == 0) return GetRandomFood();
+        if (name.Length == 0 || name == "dish") return GetRandomFood();
 
         // Performs check for closest representation
         string foodType = FoodTypesNames.FirstOrDefault<string>(x => x == name);
@@ -48,7 +51,5 @@ public class FoodTypeController : Controller
         return new FoodType(foodType);
     }
 
-    private FoodType GetRandomFood() =>
-        new FoodType(FoodTypesNames[Random.Range(0, FoodTypesNames.Length)]);
-
+    private FoodType GetRandomFood() => new FoodType(FoodTypesNames[Random.Range(0, FoodTypesNames.Length)]);
 }

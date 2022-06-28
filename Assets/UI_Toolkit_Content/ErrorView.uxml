@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="width: 100%; height: 100%; justify-content: center;">
+        <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="message" style="justify-content: center; padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px; -unity-text-align: upper-center;" />
+        <ui:Button tabindex="-1" text="Close" display-tooltip-when-elided="true" />
+    </ui:VisualElement>
+</ui:UXML>

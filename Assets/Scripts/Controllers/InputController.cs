@@ -1,6 +1,4 @@
 using UnityEngine;
-using UnityEngine.Networking;
-using System.Threading.Tasks;
 using Zenject;
 
 public class InputController : Controller
@@ -9,12 +7,19 @@ public class InputController : Controller
     [Inject] private FoodTypeController _foodTypeController;
     [Inject] private ViewController _viewController;
 
-    public override void Initialize() { }
+    public override void Initialize()
+    {
+        Debug.Log("Input Controller ready");
+    }
 
     public async void SendRequest(string text)
     {
         FoodType foodType = _foodTypeController.GetFoodType(text);
-        Sprite sprite = await _apiController.GetResponse(foodType);
-        _viewController.DisplayDish(foodType, sprite);
+        Response response = await _apiController.GetResponse(foodType);
+        if (response.Error == null || response.Error.Length <= 0)
+        {
+            _viewController.DisplayDish(response.Dish);
+        }
+        else _viewController.DisplayError(response.Error);
     }
 }
